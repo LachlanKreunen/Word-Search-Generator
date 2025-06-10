@@ -1,3 +1,3 @@
-C README FILE (01/29/2025):
+C WORDSEARCH README FILE (01/29/2025):
 
 The word search project takes a size (max of 20) followed by words as the parameters. Once the parameters are met the grid of the word search is set to a character and the words are inserted. The words are inserted by an insert word method that inserts them randomly. A random coordinate inside the box is taken and tried for ability to place a word, right, down, diagonal up and diagonal down. Then if it doesnt work the rest of the points are tested methodically to be able to test all possible locations starting from a random point. Then, the grid is filled with extra random letters and printed out with the list of words that are hidden.
