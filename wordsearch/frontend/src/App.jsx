@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Generator from './Pages/Generator.jsx'
 import Game from './Pages/Game.jsx'
+import WinScreen from './Pages/WinScreen.jsx'
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom'
 
 function HomeScreen() {
@@ -16,7 +17,7 @@ function HomeScreen() {
           Play
         </button>
         <p>
-          Click play to make a wordsearch game!
+          Click play to make a word search game!
         </p>
       </div>
     </>
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/" element={<HomeScreen />} />
         <Route path="/generator" element={<Generator />} />
         <Route path="/game" element={<Game />} />
+        <Route path="/win" element={<WinScreen />} />
       </Routes>
     </Router>
   )

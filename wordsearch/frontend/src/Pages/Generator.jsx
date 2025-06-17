@@ -8,6 +8,8 @@ export default function Generator() {
   const [gridSize, setGridSize] = useState("");
   const [newWord, setNewWord] = useState("");
   const [wordsList, setWordsList] = useState([]);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleAddWord = () => {
     const trimmed = newWord.trim().toUpperCase();
@@ -25,11 +27,16 @@ export default function Generator() {
           wordsList,
         }
       );
-      console.log("C program output:\n", response.data);
+      console.log(response.data);
       return response;
     } catch (err) {
-      console.error( err);
-      throw err;
+      console.error(err);
+      setErrorMessage(
+        "Unable to generate wordsearch — check your words or grid size."
+      );
+      setShowErrorPopup(true);
+      setWordsList([]);
+      return null;
     }
   };
 
@@ -83,22 +90,33 @@ export default function Generator() {
 
         <button
           onClick={async () => {
-            try {
-              const response = await runWordSearch();
-              navigate("/game", {
-                state: {
-                  gridSize: Number(gridSize),
-                  wordsList,
-                  output: response?.data,
-                },
-              });
-            } catch (err) {
-              console.error("Navigation failed:", err);
-            }
+            const response = await runWordSearch();
+            if (!response) return;
+            navigate("/game", {
+              state: {
+                gridSize: Number(gridSize),
+                wordsList,
+                output: response.data,
+              },
+            });
           }}
         >
           Generate
         </button>
+
+        {showErrorPopup && (
+          <div className="error-overlay">
+          <div className="error-popup">
+            <p className="error-message">{errorMessage}</p>
+            <button
+              className="error-close-button"
+              onClick={() => setShowErrorPopup(false)}
+            >
+              Close
+            </button>
+          </div>
+          </div>
+        )}
       </div>
     </>
   );

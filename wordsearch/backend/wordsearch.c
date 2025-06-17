@@ -5,6 +5,7 @@
 
 char grid[20][20];
 char checker[20][20];
+char answers[20][20];
 int grid_size;
 
 // Directions mapped to letter characters: R,D,X,U (Right,Down,Diagonal Down, Diagonal Up)
@@ -140,8 +141,12 @@ void fill_grid()
         for (int j = 0; j < grid_size; j++)
         {
             if (grid[i][j] == '.')
-            {
+            {   
+                answers[i][j] = 'O';
                 grid[i][j] = 'A' + (rand() % 26);
+            }
+            else{
+                answers[i][j] = 'X';
             }
         }
     }
@@ -162,10 +167,19 @@ void print_grid()
     {
         for (int j = 0; j < grid_size; j++)
         {
-            printf("%c ", checker[i][j]);
+            printf("%c ", answers[i][j]);
         }
         printf("\n");
     }
+
+    /*for (int i = 0; i < grid_size; i++)
+    {
+        for (int j = 0; j < grid_size; j++)
+        {
+            printf("%c ", checker[i][j]);
+        }
+        printf("\n");
+    }*/
 }
 
 int main(int argc, char *argv[])
@@ -206,11 +220,11 @@ int main(int argc, char *argv[])
     print_grid();
 
     // Print word list
-    printf("\nWords:\n");
+    /*printf("\nWords:\n");
     for (int i = 2; i < argc; i++)
     {
         printf("%s\n", argv[i]);
-    }
+    }*/
 
     return 0;
 }

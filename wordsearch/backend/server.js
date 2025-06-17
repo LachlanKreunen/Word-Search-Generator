@@ -14,7 +14,7 @@ app.post('/run-wordsearch', (req, res) => {
 
   const args = [gridSize, ...wordsList];
 
-  const exePath = path.join(__dirname, 'ws.exe');
+  const exePath = path.join(__dirname, 'test.exe');
 
   execFile(exePath, args, (error, stdout, stderr) => {
     if (error) {
