@@ -9,6 +9,7 @@ const port = 3001;
 app.use(cors());
 app.use(express.json());
 
+// Run the exe and return its output
 app.post('/run-wordsearch', (req, res) => {
   const { gridSize, wordsList } = req.body;
 
@@ -26,6 +27,7 @@ app.post('/run-wordsearch', (req, res) => {
   });
 });
 
+//error check
 app.listen(port, () => {
   console.log(`check`);
 });

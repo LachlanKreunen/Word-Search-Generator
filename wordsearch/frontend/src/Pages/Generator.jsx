@@ -11,6 +11,7 @@ export default function Generator() {
   const [showErrorPopup, setShowErrorPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  //Handing how to parse the word and add it to the arguments constant
   const handleAddWord = () => {
     const trimmed = newWord.trim().toUpperCase();
     if (trimmed.includes(" ")) {
@@ -23,6 +24,9 @@ export default function Generator() {
     setNewWord("");
   };
 
+  /*Conntecting to the backend chosen port of "3001" to send the arguments to generate
+  * handles edge cases to not have an error
+  */
   const runWordSearch = async () => {
     try {
       const response = await axios.post(

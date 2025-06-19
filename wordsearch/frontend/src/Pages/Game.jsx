@@ -3,10 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../App.css";
 
 export default function Game() {
-  const { state } = useLocation();
+  const { state } = useLocation(); //Getting the information generated in the generate page
   const { gridSize, wordsList, output } = state;
   const navigate = useNavigate();
 
+  //split data into the puzzle and solution matrix
   const allLines = output.trim().split("\n");
   const gridLines = allLines.slice(0, Number(gridSize));
   const solution = allLines.slice(
@@ -15,7 +16,7 @@ export default function Game() {
   );
   const grid = gridLines.map((line) => line.trim().split(/\s+/));
 
-
+  //Track user selection
   const [inputGrid, setInputGrid] = useState(() =>
     Array.from({ length: Number(gridSize) }, () =>
       Array(Number(gridSize)).fill(false)
@@ -25,7 +26,7 @@ export default function Game() {
 
   const answerGrid = solution.map((line) => line.trim().split(/\s+/));
 
-
+  //change the x into the true values for a boolean matrix
   const solutionGrid = useMemo(
     () =>
       answerGrid.map((row) => row.map((cell) => cell === "X")),
@@ -33,6 +34,7 @@ export default function Game() {
   );
 
 
+  // toggle cell value and check for win to match only the correct instances
   const toggleCell = (r, c) => {
 
     const next = inputGrid.map((row) => row.slice());
