@@ -13,6 +13,11 @@ export default function Generator() {
 
   const handleAddWord = () => {
     const trimmed = newWord.trim().toUpperCase();
+    if (trimmed.includes(" ")) {
+     setErrorMessage("Words cannot contain spaces.");
+     setShowErrorPopup(true);
+     return;
+   }
     if (trimmed === "") return;
     setWordsList([...wordsList, trimmed]);
     setNewWord("");
