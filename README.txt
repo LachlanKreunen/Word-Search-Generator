@@ -5,3 +5,11 @@ The word search project takes a size (max of 20) followed by words as the parame
 REVISED (06/17/2025):
 
 Changed the console output to output two grids, one with the puzzle and one with an identical-sized grid with the correct coordinates marked to be able to check for game-ending conditions.
+
+WEB APP WORDSEARCH README FILE (06/18/2025):
+
+The web‑app edition of the word‑search game lets users build and solve a wordsearcg in the browser with a React front end connected to a Node.js/Express API.
+
+You are met with an intro screen then,  a generator screen where a player selects a grid size, supplies single words then when generate is pressed the front end POSTs { gridSize, wordsList } to /run-wordsearch where the Express route invokes the original C solver as an exe file, receives the puzzle grid and a matching coordinate mask, and returns both to the client.The Game screen draws the puzzle as a clickable table, tracks cell toggles in React state, highlights selections, and has the win condition only when the toggled pattern exactly matches the solution table.
+
+Invalid input such as blank words, spaces, or out‑of‑range sizes triggers an error popup.
