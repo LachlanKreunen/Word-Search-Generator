@@ -16,7 +16,7 @@ export default function Game() {
   );
   const grid = gridLines.map((line) => line.trim().split(/\s+/));
 
-  //Track user selection
+  //track user selection
   const [inputGrid, setInputGrid] = useState(() =>
     Array.from({ length: Number(gridSize) }, () =>
       Array(Number(gridSize)).fill(false)
@@ -34,7 +34,7 @@ export default function Game() {
   );
 
 
-  // toggle cell value and check for win to match only the correct instances
+  //toggle cell value and check for win to match only the correct instances
   const toggleCell = (r, c) => {
 
     const next = inputGrid.map((row) => row.slice());
